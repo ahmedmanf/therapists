@@ -19,12 +19,12 @@
     <link href="{{asset('css/extra.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
-    <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/datepicker/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('js/datepicker/bootstrap-datepicker.en-CA.min.js')}}"></script>
-    <script src="{{asset('js/extra.js')}}"></script>
+    <script src="{{asset('js/jquery-3.5.1.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-ui.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/datepicker/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/datepicker/bootstrap-datepicker.en-CA.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/extra.js')}}" type="text/javascript"></script>
 </head>
 <body>
     <div id="app">

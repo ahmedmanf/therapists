@@ -1,16 +1,10 @@
-/**
- * send token in all ajax
- */
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
 
-/**
- * open Reservation side
- * @param id therapist id
- */
 function openreservation(id) {
 
     $('#sidebarReservation').html('<div class="col-md-12 mt-5 text-center"><div class="spinner-border text-primary" role="status">\n' +
@@ -37,28 +31,16 @@ function openreservation(id) {
     }, 500);
 }
 
-/**
- * close Reservation side
- * @returns {boolean}
- */
 function closereservation() {
     $('#sidebarReservation').hide("slide", { direction: "left" }, 1000);
     return false;
 }
 
-/**
- * hide flash alert
- */
 function hidealert() {
     $('#MyNotify').modal('hide');
     $('#NotifyContent').html('');
 }
 
-/**
- * push flash alert on right bottom with style for error or success
- * @param type (success|danger)
- * @param message alert message
- */
 function alertflash(type,message) {
     var cssclass = (type == 'success')? 'success' : 'danger';
     var newalert = '<div class="modal-body alert alert-'+cssclass+' mt-2">' + message + '</div>';
@@ -73,11 +55,6 @@ function alertflash(type,message) {
     setTimeout('hidealert()', 2000);
 }
 
-/**
- * load therapist list with ajax from json response
- * and make load more when scroll down
- * @returns {boolean}
- */
 function loadtherapist() {
 
     var from_send   = $('#Scroll_loader_Icon').data('from-send');
@@ -103,9 +80,6 @@ function loadtherapist() {
             method:"GET",
             success:function(response)
             {
-                /**
-                 * update assets that used
-                 */
                 if (response.last_page) {
                     $('#Scroll_loader_Icon').data('last-page',response.last_page);
                 }
@@ -117,10 +91,6 @@ function loadtherapist() {
                     $.each(response.data, function (index, value) {
                         var title = value.title; title = title.substr(0, 20);
                         var desc = value.description; desc = desc.substr(0, 25);
-                        /**
-                         * make html view from json response
-                         * @type {string}
-                         */
                         htmlview += '<div class="col-md-3">\n' +
                             '    <div class="card shadow-lg p-3 mb-3 bg-white rounded-0 border-white">\n' +
                             '        <div class="m-auto">\n' +
@@ -150,10 +120,6 @@ function loadtherapist() {
                             '</div>\n';
                     });
                 }
-                /**
-                 * check if has display message to remove it
-                 * @type {jQuery}
-                 */
 
                 var viewed_before = $('#Therapist_html_view > div.col-md-3').length;
                 if (viewed_before > 0 && from_send == 'page') {
@@ -163,10 +129,6 @@ function loadtherapist() {
                     $('#Therapist_html_view').html(htmlview);
                 }
                 $('#Scroll_loader_Icon').hide();
-                /**
-                 * check if empty display error message
-                 * @type {jQuery}
-                 */
                 var viewed_after = $('#Therapist_html_view > div.col-md-3').length;
                 if (viewed_after < 1) {
                     $('#Therapist_html_view').html('<div class="col-md-12"><div class="alert alert-info" role="alert">No data </div></div>');
@@ -180,19 +142,11 @@ function loadtherapist() {
     }
 }
 
-
-/**
- * search when keyup on search input call this function
- */
 function search() {
     $('#Scroll_loader_Icon').data('from-send','search');
     loadtherapist();
-    //return false;
+    return false;
 }
-/**
- * get fixed height of document to clac when load more
- * @returns {number}
- */
 function getDocHeight() {
     var D = document;
     return Math.max(
@@ -203,14 +157,8 @@ function getDocHeight() {
 }
 
 $(document).ready(function() {
-    /**
-     * load first data on page
-     */
     loadtherapist();
 
-    /**
-     * when scroll calc if need load more or not
-     */
     $(window).scroll(function() {
         if(Math.ceil($(window).scrollTop() + $(window).height()) == getDocHeight()) {
             loadtherapist();

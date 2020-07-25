@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        function search2() {
+            $('#Scroll_loader_Icon').data('from-send','search');
+            loadtherapist();
+            return false;
+        }
+    </script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -14,12 +21,12 @@
                                    type="text"
                                    id="search_input"
                                    name="search"
-                                   onkeyup="search();"
+                                   onkeyup="search2();"
                             >
                         </label>
                     </div>
                     <div class="col-sm-1">
-                        <button type="button" class="btn btn-primary w-100" onclick="search();">
+                        <button type="button" class="btn btn-primary w-100" onclick="search2();">
                             <i class="fa fa-search text-white text-lg-center "></i>
                         </button>
                     </div>
